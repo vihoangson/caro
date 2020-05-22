@@ -52,6 +52,7 @@
 <script lang="javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
 <script>
     var inStart = true;
+
     function checkWin(check, turn) {
         let arrayCheck = []
         $.each(check, function (key, v) {
@@ -59,10 +60,13 @@
             let i = 1;
             let mark = 0;
             while (i <= 5) {
-                if(hasNode(check, parseInt(v.x)+i, parseInt(v.y),turn) === true){
+                if (hasNode(check, parseInt(v.x) + i, parseInt(v.y), turn) === true) {
                     mark++;
+                    console.log(mark);
+                } else {
+                    break;
                 }
-                if(mark >= 4){
+                if (mark >= 4) {
                     inStart = false;
                     alert('win');
                     return;
@@ -73,10 +77,14 @@
             i = 1;
             mark = 0;
             while (i <= 5) {
-                if(hasNode(check, parseInt(v.x)-i, parseInt(v.y),turn) === true){
+                if (hasNode(check, parseInt(v.x) - i, parseInt(v.y), turn) === true) {
                     mark++;
+                    console.log(mark);
+                } else {
+                    break;
                 }
-                if(mark >= 4){
+
+                if (mark >= 4) {
                     inStart = false;
                     alert('win');
                     return;
@@ -87,10 +95,13 @@
             i = 1;
             mark = 0;
             while (i <= 5) {
-                if(hasNode(check, parseInt(v.x)-i, parseInt(v.y)-i,turn) === true){
+                if (hasNode(check, parseInt(v.x), parseInt(v.y) + i, turn) === true) {
                     mark++;
+                    console.log(mark);
+                } else {
+                    break;
                 }
-                if(mark >= 4){
+                if (mark >= 4) {
                     inStart = false;
                     alert('win');
                     return;
@@ -101,10 +112,14 @@
             i = 1;
             mark = 0;
             while (i <= 5) {
-                if(hasNode(check, parseInt(v.x)+i, parseInt(v.y)+i,turn) === true){
+                if (hasNode(check, parseInt(v.x), parseInt(v.y) - i, turn) === true) {
                     mark++;
+                    console.log(mark);
+                } else {
+                    break;
                 }
-                if(mark >= 4){
+
+                if (mark >= 4) {
                     inStart = false;
                     alert('win');
                     return;
@@ -115,10 +130,13 @@
             i = 1;
             mark = 0;
             while (i <= 5) {
-                if(hasNode(check, parseInt(v.x)-i, parseInt(v.y)+i,turn) === true){
+                if (hasNode(check, parseInt(v.x) - i, parseInt(v.y) - i, turn) === true) {
                     mark++;
+                    console.log(mark);
+                } else {
+                    break;
                 }
-                if(mark >= 4){
+                if (mark >= 4) {
                     inStart = false;
                     alert('win');
                     return;
@@ -129,10 +147,47 @@
             i = 1;
             mark = 0;
             while (i <= 5) {
-                if(hasNode(check, parseInt(v.x)+i, parseInt(v.y)-i,turn) === true){
+                if (hasNode(check, parseInt(v.x) + i, parseInt(v.y) + i, turn) === true) {
                     mark++;
+                    console.log(mark);
+                } else {
+                    break;
                 }
-                if(mark >= 4){
+                if (mark >= 4) {
+                    inStart = false;
+                    alert('win');
+                    return;
+                }
+                i++
+            }
+
+            i = 1;
+            mark = 0;
+            while (i <= 5) {
+                if (hasNode(check, parseInt(v.x) - i, parseInt(v.y) + i, turn) === true) {
+                    mark++;
+                    console.log(mark);
+                } else {
+                    break;
+                }
+                if (mark >= 4) {
+                    inStart = false;
+                    alert('win');
+                    return;
+                }
+                i++
+            }
+
+            i = 1;
+            mark = 0;
+            while (i <= 5) {
+                if (hasNode(check, parseInt(v.x) + i, parseInt(v.y) - i, turn) === true) {
+                    mark++;
+                    console.log(mark);
+                } else {
+                    break;
+                }
+                if (mark >= 4) {
                     inStart = false;
                     alert('win');
                     return;
@@ -140,11 +195,12 @@
                 i++
             }
         })
-
     }
 
-    function hasNode(check, x, y,turn) {
-        let flag =  false
+    function hasNode(check, x, y, turn) {
+        if (x < 0 || y < 0)
+            return false;
+        let flag = false
         $.each(check, function (key2, v2) {
             if (parseInt(v2.x) === x && parseInt(v2.y) === y && v2.turn === turn) {
                 flag = true;
@@ -169,7 +225,7 @@
         var check = [];
         var step = 0;
         $("span").click(function () {
-            if(!inStart)
+            if (!inStart)
                 return;
             if (!$(this).hasClass('active')) {
                 if (turn === 1) {
@@ -185,7 +241,7 @@
                     x: $(this).attr('class').split(' ')[0].match(/\-(\d*)$/)[1],
                     turn: turn
                 }
-                if (checkWin(check,turn)) {
+                if (checkWin(check, turn)) {
                     alert(1);
                 }
                 step++
