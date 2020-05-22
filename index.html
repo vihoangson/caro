@@ -1,6 +1,8 @@
 <html>
 <header>
     <style>
+
+
         div.row > span {
             float: left;
             display: block;
@@ -21,9 +23,18 @@
         .clear-fix {
             clear: both;
         }
+        .color-turn{
+            width: 50px;
+            height: 50px;
+        }
+
+        .draw-boder {
+            /*border: 1px solid purple !important;*/
+        }
     </style>
 </header>
 <body>
+<div class="color-turn"></div>
 <div class="game">
     <div class="row">
         <span class="co_lss-1"></span>
@@ -50,153 +61,9 @@
     </div>
 </div>
 <script lang="javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
+<script lang="javascript" src="checkWin.js"></script>
 <script>
     var inStart = true;
-
-    function checkWin(check, turn) {
-        let arrayCheck = []
-        $.each(check, function (key, v) {
-
-            let i = 1;
-            let mark = 0;
-            while (i <= 5) {
-                if (hasNode(check, parseInt(v.x) + i, parseInt(v.y), turn) === true) {
-                    mark++;
-                    console.log(mark);
-                } else {
-                    break;
-                }
-                if (mark >= 4) {
-                    inStart = false;
-                    alert('win');
-                    return;
-                }
-                i++
-            }
-
-            i = 1;
-            mark = 0;
-            while (i <= 5) {
-                if (hasNode(check, parseInt(v.x) - i, parseInt(v.y), turn) === true) {
-                    mark++;
-                    console.log(mark);
-                } else {
-                    break;
-                }
-
-                if (mark >= 4) {
-                    inStart = false;
-                    alert('win');
-                    return;
-                }
-                i++
-            }
-
-            i = 1;
-            mark = 0;
-            while (i <= 5) {
-                if (hasNode(check, parseInt(v.x), parseInt(v.y) + i, turn) === true) {
-                    mark++;
-                    console.log(mark);
-                } else {
-                    break;
-                }
-                if (mark >= 4) {
-                    inStart = false;
-                    alert('win');
-                    return;
-                }
-                i++
-            }
-
-            i = 1;
-            mark = 0;
-            while (i <= 5) {
-                if (hasNode(check, parseInt(v.x), parseInt(v.y) - i, turn) === true) {
-                    mark++;
-                    console.log(mark);
-                } else {
-                    break;
-                }
-
-                if (mark >= 4) {
-                    inStart = false;
-                    alert('win');
-                    return;
-                }
-                i++
-            }
-
-            i = 1;
-            mark = 0;
-            while (i <= 5) {
-                if (hasNode(check, parseInt(v.x) - i, parseInt(v.y) - i, turn) === true) {
-                    mark++;
-                    console.log(mark);
-                } else {
-                    break;
-                }
-                if (mark >= 4) {
-                    inStart = false;
-                    alert('win');
-                    return;
-                }
-                i++
-            }
-
-            i = 1;
-            mark = 0;
-            while (i <= 5) {
-                if (hasNode(check, parseInt(v.x) + i, parseInt(v.y) + i, turn) === true) {
-                    mark++;
-                    console.log(mark);
-                } else {
-                    break;
-                }
-                if (mark >= 4) {
-                    inStart = false;
-                    alert('win');
-                    return;
-                }
-                i++
-            }
-
-            i = 1;
-            mark = 0;
-            while (i <= 5) {
-                if (hasNode(check, parseInt(v.x) - i, parseInt(v.y) + i, turn) === true) {
-                    mark++;
-                    console.log(mark);
-                } else {
-                    break;
-                }
-                if (mark >= 4) {
-                    inStart = false;
-                    alert('win');
-                    return;
-                }
-                i++
-            }
-
-            i = 1;
-            mark = 0;
-            while (i <= 5) {
-                if (hasNode(check, parseInt(v.x) + i, parseInt(v.y) - i, turn) === true) {
-                    mark++;
-                    console.log(mark);
-                } else {
-                    break;
-                }
-                if (mark >= 4) {
-                    inStart = false;
-                    alert('win');
-                    return;
-                }
-                i++
-            }
-        })
-    }
-
     function hasNode(check, x, y, turn) {
         if (x < 0 || y < 0)
             return false;
@@ -212,6 +79,7 @@
 
     $(document).ready(function () {
 
+
         let m = $(".game > div").clone();
         $(".game > div").remove();
         for (let i = 1; i <= 20; i++) {
@@ -224,9 +92,20 @@
         var turn = 1;
         var check = [];
         var step = 0;
+        if(turn === 0){
+            $('.color-turn').css({background:'red'});
+        }else{
+            $('.color-turn').css({background:'blue'});
+        }
         $("span").click(function () {
             if (!inStart)
                 return;
+            if(turn === 0){
+                $('.color-turn').css({background:'blue'});
+            }else{
+                $('.color-turn').css({background:'red'});
+            }
+
             if (!$(this).hasClass('active')) {
                 if (turn === 1) {
                     $(this).addClass(['active', 'blue']);
