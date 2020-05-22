@@ -23,7 +23,8 @@
         .clear-fix {
             clear: both;
         }
-        .color-turn{
+
+        .color-turn {
             width: 50px;
             height: 50px;
         }
@@ -64,6 +65,7 @@
 <script lang="javascript" src="checkWin.js"></script>
 <script>
     var inStart = true;
+
     function hasNode(check, x, y, turn) {
         if (x < 0 || y < 0)
             return false;
@@ -92,18 +94,18 @@
         var turn = 1;
         var check = [];
         var step = 0;
-        if(turn === 0){
-            $('.color-turn').css({background:'red'});
-        }else{
-            $('.color-turn').css({background:'blue'});
+        if (turn === 0) {
+            $('.color-turn').css({background: 'red'});
+        } else {
+            $('.color-turn').css({background: 'blue'});
         }
         $("span").click(function () {
             if (!inStart)
                 return;
-            if(turn === 0){
-                $('.color-turn').css({background:'blue'});
-            }else{
-                $('.color-turn').css({background:'red'});
+            if (turn === 0) {
+                $('.color-turn').css({background: 'blue'});
+            } else {
+                $('.color-turn').css({background: 'red'});
             }
 
             if (!$(this).hasClass('active')) {
