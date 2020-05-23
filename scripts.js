@@ -32,6 +32,11 @@ function draw(check) {
 }
 
 $(document).ready(function () {
+    var name = '22232aa' + Math.random();
+    var members = [];
+    $("#name").text(name);
+    socket.emit('push', {data: JSON.stringify(check), turn: turn, name: name});
+    socket.emit('join', {name: name});
 
     let m = $(".game > div").clone();
 
@@ -50,8 +55,21 @@ $(document).ready(function () {
         $('.color-turn').css({background: 'red'});
     }
 
+    // Xử lý join room
+    socket.on('join_room', (data) => {
+        members = [];
+        members.push(name)
+        members.push(data)
+        $("#members").text(JSON.stringify(members))
+    })
+
+    // Xử lý sự kiện nhận từ socket
     socket.on('pull', (data) => {
+
         ch = JSON.parse(data.data)
+        if (checkWin(ch, turn)) {
+            alert(1);
+        }
         if (data.turn === 0) {
             turn = 1
             $('.color-turn').css({background: 'blue'});
@@ -59,6 +77,7 @@ $(document).ready(function () {
             turn = 0
             $('.color-turn').css({background: 'red'});
         }
+
         draw(ch);
     })
 
@@ -66,21 +85,13 @@ $(document).ready(function () {
         if (!inStart)
             return;
 
-
         if (!$(this).hasClass('active')) {
-
             check[step] = {
                 y: ($(this).parent().attr('class').split(' ')[1].match(/\-(\d*)$/)[1]),
                 x: $(this).attr('class').split(' ')[0].match(/\-(\d*)$/)[1],
                 turn: turn
             }
-
-
-            socket.emit('push', {data:JSON.stringify(check),turn:turn});
-
-            if (checkWin(check, turn)) {
-                alert(1);
-            }
+            socket.emit('push', {data: JSON.stringify(check), turn: turn, name: name});
             step++
         }
     })

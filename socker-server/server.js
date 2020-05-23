@@ -10,6 +10,13 @@ app.get("/", function (req, res) {
 io.on("connection", function (socket) {
     console.log("A user has connected...");
     socket.join('room')
+
+    socket.on("join", function (data) {
+        console.log('user join: user:'+data.name);
+        socket.join('user:'+data.name);
+        io.to('room').emit('join_room', data.name);
+    });
+
     socket.on("push", function (data) {
         console.log('pull ' + data);
         io.to('room').emit('pull', data);
