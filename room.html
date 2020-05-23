@@ -1,0 +1,87 @@
+<html>
+<header>
+    <style>
+
+
+        div.row > span {
+            float: left;
+            display: block;
+            width: 20px;
+            height: 20px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+        }
+
+        div.row > span.active.blue {
+            background: blue;
+        }
+
+        div.row > span.active.red {
+            background: red;
+        }
+
+        .clear-fix {
+            clear: both;
+        }
+
+        .color-turn {
+            width: 50px;
+            height: 50px;
+        }
+
+        .draw-boder {
+            /*border: 1px solid purple !important;*/
+        }
+    </style>
+</header>
+<body>
+<h1 id="name"></h1>
+<div id="members"></div>
+<div class="color-turn"></div>
+<div class="game">
+    <div class="row">
+        <span class="co_lss-1"></span>
+        <span class="co_lss-2"></span>
+        <span class="co_lss-3"></span>
+        <span class="co_lss-4"></span>
+        <span class="co_lss-5"></span>
+        <span class="co_lss-6"></span>
+        <span class="co_lss-7"></span>
+        <span class="co_lss-8"></span>
+        <span class="co_lss-9"></span>
+        <span class="co_lss-10"></span>
+        <span class="co_lss-11"></span>
+        <span class="co_lss-12"></span>
+        <span class="co_lss-13"></span>
+        <span class="co_lss-14"></span>
+        <span class="co_lss-15"></span>
+        <span class="co_lss-16"></span>
+        <span class="co_lss-17"></span>
+        <span class="co_lss-18"></span>
+        <span class="co_lss-19"></span>
+        <span class="co_lss-20"></span>
+        <div class="clear-fix"></div>
+    </div>
+</div>
+
+
+<script src="node_modules/socket.io-client/dist/socket.io.js"></script>
+<script>var socket = io('http://localhost:3000/');</script>
+<script lang="javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
+<script lang="javascript" src="scripts.js"></script>
+<script lang="javascript" src="checkWin.js"></script>
+
+<script>
+    $(function () {
+        $('span').click(function () {
+            if (!inStart)
+                return;
+            if (!$(this).hasClass('active')) {
+            }
+        });
+    });
+</script>
+</body>
+</html>
+
+
