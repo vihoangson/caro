@@ -33,9 +33,10 @@ function draw(check) {
 
 $(document).ready(function () {
 
-
     let m = $(".game > div").clone();
+
     $(".game > div").remove();
+
     for (let i = 1; i <= 20; i++) {
         let n = m.clone();
         n.addClass('col-' + i);
@@ -50,25 +51,23 @@ $(document).ready(function () {
     }
 
     socket.on('pull', (data) => {
-        ch = JSON.parse(data)
+        ch = JSON.parse(data.data)
+        if (data.turn === 0) {
+            turn = 1
+            $('.color-turn').css({background: 'blue'});
+        } else {
+            turn = 0
+            $('.color-turn').css({background: 'red'});
+        }
         draw(ch);
     })
 
     $("span").click(function () {
         if (!inStart)
             return;
-        if (turn === 0) {
-            $('.color-turn').css({background: 'blue'});
-        } else {
-            $('.color-turn').css({background: 'red'});
-        }
+
 
         if (!$(this).hasClass('active')) {
-            if (turn === 1) {
-                turn = 0;
-            } else {
-                turn = 1;
-            }
 
             check[step] = {
                 y: ($(this).parent().attr('class').split(' ')[1].match(/\-(\d*)$/)[1]),
@@ -77,7 +76,7 @@ $(document).ready(function () {
             }
 
 
-            socket.emit('push', JSON.stringify(check));
+            socket.emit('push', {data:JSON.stringify(check),turn:turn});
 
             if (checkWin(check, turn)) {
                 alert(1);
