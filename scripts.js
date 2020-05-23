@@ -16,6 +16,21 @@ function hasNode(check, x, y, turn) {
     return flag;
 }
 
+function draw(check) {
+    $("span").removeClass('blue')
+    $("span").removeClass('red')
+    $.each(check, (k, v) => {
+        if (v.turn === 1) {
+            console.log('.col-' + v.y + ' >.co_lss-' + v.x);
+            $('.col-' + v.y + ' >.co_lss-' + v.x).addClass(['blue', 'active']);
+        } else {
+            $('.col-' + v.y + ' >.co_lss-' + v.x).addClass(['red', 'active']);
+
+        }
+    })
+
+}
+
 $(document).ready(function () {
 
 
@@ -29,11 +44,17 @@ $(document).ready(function () {
 
 
     if (turn === 0) {
-        $('.color-turn').css({background: 'red'});
-    } else {
         $('.color-turn').css({background: 'blue'});
+    } else {
+        $('.color-turn').css({background: 'red'});
     }
-    $("span").mouseover(function () {
+
+    socket.on('pull', (data) => {
+        ch = JSON.parse(data)
+        draw(ch);
+    })
+
+    $("span").click(function () {
         if (!inStart)
             return;
         if (turn === 0) {
@@ -44,10 +65,8 @@ $(document).ready(function () {
 
         if (!$(this).hasClass('active')) {
             if (turn === 1) {
-                $(this).addClass(['active', 'blue']);
                 turn = 0;
             } else {
-                $(this).addClass(['active', 'red']);
                 turn = 1;
             }
 
@@ -57,7 +76,8 @@ $(document).ready(function () {
                 turn: turn
             }
 
-            socket.emit('chat message', JSON.stringify(check));
+
+            socket.emit('push', JSON.stringify(check));
 
             if (checkWin(check, turn)) {
                 alert(1);
