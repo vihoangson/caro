@@ -20,6 +20,7 @@ function hasNode(check, x, y, turn) {
 function draw(check) {
     $("span").removeClass('blue')
     $("span").removeClass('red')
+    console.log(check);
     $.each(check, (k, v) => {
         if (v.turn === 1) {
             $('.col-' + v.y + ' >.co_lss-' + v.x).addClass(['blue', 'active']);
@@ -58,6 +59,7 @@ $(document).ready(function () {
     socket.emit('push', {data: JSON.stringify(check), turn: turn, name: name});
 
     var part = 'red';
+
     socket.emit('join', {name: name});
 
 
@@ -76,6 +78,7 @@ $(document).ready(function () {
     // Xử lý sự kiện nhận từ socket
     socket.on('pull', (data) => {
         ch = JSON.parse(data.data)
+        check = ch;
         if (checkWin(ch, turn)) {
             alert(1);
         }
@@ -102,6 +105,7 @@ $(document).ready(function () {
         if (!yourTurn)
             return;
         if (!$(this).hasClass('active')) {
+            step = check.length;
             check[step] = {
                 y: ($(this).parent().attr('class').split(' ')[1].match(/\-(\d*)$/)[1]),
                 x: $(this).attr('class').split(' ')[0].match(/\-(\d*)$/)[1],
