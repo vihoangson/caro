@@ -32,7 +32,7 @@ function draw(check) {
 }
 
 $(document).ready(function () {
-    var name = '22232aa' + Math.random();
+    var name = 'U:' + Math.random();
     var members = [];
     $("#name").text(name);
     socket.emit('push', {data: JSON.stringify(check), turn: turn, name: name});

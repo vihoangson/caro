@@ -11,6 +11,9 @@ io.on("connection", function (socket) {
     console.log("A user has connected...");
     socket.join('room')
 
+    socket.on("create-room", function (data) {
+        console.log('create room');
+    });
     socket.on("join", function (data) {
         console.log('user join: user:'+data.name);
         socket.join('user:'+data.name);
@@ -20,7 +23,6 @@ io.on("connection", function (socket) {
     socket.on("push", function (data) {
         console.log('pull ' + data);
         io.to('room').emit('pull', data);
-
     });
 });
 
