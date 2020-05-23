@@ -15,7 +15,7 @@ function checkWin(check, turn) {
             if (hasNode(check, x, y, turn) === true) {
                 x_mark++;
                 x = x + 1;
-                console.log(x_mark);
+                // console.log(x_mark);
             } else {
                 break;
             }
@@ -39,7 +39,7 @@ function checkWin(check, turn) {
                 x_mark++;
                 y = y + 1;
                 x = x;
-                console.log(x_mark);
+                // console.log(x_mark);
             } else {
                 break;
             }
@@ -63,7 +63,7 @@ function checkWin(check, turn) {
                 x_mark++;
                 y = y + 1;
                 x = x +1;
-                console.log(x_mark);
+                // console.log(x_mark);
             } else {
                 break;
             }
@@ -87,7 +87,7 @@ function checkWin(check, turn) {
                 x_mark++;
                 y = y - 1;
                 x = x +1;
-                console.log(x_mark);
+                // console.log(x_mark);
             } else {
                 break;
             }
