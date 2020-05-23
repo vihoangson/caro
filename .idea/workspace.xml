@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="be0f3327-db45-4d98-8dfb-48e8d3777652" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/checkWin.js" beforeDir="false" afterPath="$PROJECT_DIR$/checkWin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/room.html" beforeDir="false" afterPath="$PROJECT_DIR$/room.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts.js" beforeDir="false" afterPath="$PROJECT_DIR$/scriptsCaro.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,15 +44,39 @@
       <updated>1590153493068</updated>
       <workItem from="1590153495354" duration="7948000" />
     </task>
+    <task id="LOCAL-00001" summary="update">
+      <created>1590220033343</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1590220033343</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="update" />
+    <option name="LAST_COMMIT_MESSAGE" value="update" />
+  </component>
   <component name="WindowStateProjectService">
+    <state x="647" y="131" key="CommitChangelistDialog2" timestamp="1590220215647">
+      <screen x="124" y="0" width="1796" height="1080" />
+    </state>
+    <state x="647" y="131" key="CommitChangelistDialog2/124.0.1796.1080@124.0.1796.1080" timestamp="1590220215647" />
     <state x="812" y="262" key="RollbackChangesDialog" timestamp="1590219325025">
       <screen x="124" y="0" width="1796" height="1080" />
     </state>
     <state x="812" y="262" key="RollbackChangesDialog/124.0.1796.1080@124.0.1796.1080" timestamp="1590219325025" />
+    <state x="614" y="273" key="Vcs.Push.Dialog.v2" timestamp="1590220034697">
+      <screen x="124" y="0" width="1796" height="1080" />
+    </state>
+    <state x="614" y="273" key="Vcs.Push.Dialog.v2/124.0.1796.1080@124.0.1796.1080" timestamp="1590220034697" />
+    <state x="678" y="193" width="670" height="676" key="search.everywhere.popup" timestamp="1590220178817">
+      <screen x="124" y="0" width="1796" height="1080" />
+    </state>
+    <state x="678" y="193" width="670" height="676" key="search.everywhere.popup/124.0.1796.1080@124.0.1796.1080" timestamp="1590220178817" />
   </component>
 </project>
