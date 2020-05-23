@@ -3,6 +3,7 @@ var inStart = true;
 var turn = 1;
 var step = 0;
 var yourTurn = true;
+
 function hasNode(check, x, y, turn) {
     if (x < 0 || y < 0)
         return false;
@@ -21,7 +22,6 @@ function draw(check) {
     $("span").removeClass('red')
     $.each(check, (k, v) => {
         if (v.turn === 1) {
-//            console.log('.col-' + v.y + ' >.co_lss-' + v.x);
             $('.col-' + v.y + ' >.co_lss-' + v.x).addClass(['blue', 'active']);
         } else {
             $('.col-' + v.y + ' >.co_lss-' + v.x).addClass(['red', 'active']);
@@ -50,7 +50,6 @@ $(document).ready(function () {
     }
 
 
-
     var name = 'U:' + Math.random();
     $("#name").text(name);
 
@@ -66,7 +65,7 @@ $(document).ready(function () {
     socket.on('join_room', (data) => {
         members = [];
         members.push(name)
-        if(name !== data){
+        if (name !== data) {
             members.push(data)
             part = 'blue'
         }
@@ -87,10 +86,11 @@ $(document).ready(function () {
             turn = 0
             $('.color-turn').css({background: 'red'});
         }
+
         yourTurn = false;
-        if(turn === 0 && part === 'red'){
+        if (turn === 0 && part === 'red') {
             yourTurn = true;
-        }else if(turn === 1 && part === 'blue'){
+        } else if (turn === 1 && part === 'blue') {
             yourTurn = true;
         }
         draw(ch);
@@ -99,7 +99,7 @@ $(document).ready(function () {
     $("span").click(function () {
         if (!inStart)
             return;
-        if(!yourTurn)
+        if (!yourTurn)
             return;
         if (!$(this).hasClass('active')) {
             check[step] = {
